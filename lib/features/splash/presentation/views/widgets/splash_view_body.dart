@@ -1,8 +1,8 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/get_navigation.dart';
+import 'package:my_bookly/core/utils/assets.dart';
 import 'package:my_bookly/features/home/presentation/views/home_view.dart';
-import 'slider_image_animation.dart';
+import 'splash_page_transition.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
@@ -12,63 +12,111 @@ class SplashViewBody extends StatefulWidget {
 }
 
 class _SplashViewBodyState extends State<SplashViewBody>
-    with SingleTickerProviderStateMixin {
-  late AnimationController animationController;
-  late Animation<Offset> slidingAnimation;
+    with TickerProviderStateMixin {
+  double _fontSize = 2;
+  double _containerSize = 1.5;
+  double _textOpacity = 0.0;
+  double _containerOpacity = 0.0;
+
+  late AnimationController _controller;
+  late Animation<double> animation1;
 
   @override
   void initState() {
-    initSlidingAnimation();
     super.initState();
-    Future.delayed(
-        const Duration(
-          seconds: 2,
-        ), () {
-      Get.to(() => const HomeView(),
-          transition: Transition.fade,
-          duration: const Duration(milliseconds: 250));
+
+    _controller =
+        AnimationController(vsync: this, duration: const Duration(seconds: 4));
+
+    animation1 = Tween<double>(begin: 40, end: 20).animate(CurvedAnimation(
+        parent: _controller, curve: Curves.fastLinearToSlowEaseIn))
+      ..addListener(() {
+        setState(() {
+          _textOpacity = 1.0;
+        });
+      });
+
+    _controller.forward();
+
+    Timer(const Duration(seconds: 2), () {
+      setState(() {
+        _fontSize = 1.06;
+      });
+    });
+
+    Timer(const Duration(seconds: 2), () {
+      setState(() {
+        _containerSize = 2;
+        _containerOpacity = 1;
+      });
+    });
+
+    Timer(const Duration(seconds: 4), () {
+      setState(() {
+        Navigator.pushReplacement(context, PageTransition(const HomePage()));
+      });
     });
   }
 
   @override
   void dispose() {
-    animationController.dispose();
+    _controller.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.end,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        SliderImageAnimation(
-          slidingAnimation: slidingAnimation,
-        ),
-        const Center(
-          child: Padding(
-            padding: EdgeInsets.only(bottom: 16.0),
-            child: Text(
-              "Read free books",
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+    return Scaffold(
+      body: Stack(
+        children: [
+          Column(
+            children: [
+              AnimatedContainer(
+                  duration: const Duration(milliseconds: 2000),
+                  curve: Curves.fastLinearToSlowEaseIn,
+                  height: height / _fontSize),
+              AnimatedOpacity(
+                duration: const Duration(milliseconds: 1000),
+                opacity: _textOpacity,
+                child: Text(
+                  'Read free books',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: animation1.value,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Center(
+            child: AnimatedOpacity(
+              duration: const Duration(milliseconds: 2000),
+              curve: Curves.fastLinearToSlowEaseIn,
+              opacity: _containerOpacity,
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 2000),
+                curve: Curves.fastLinearToSlowEaseIn,
+                height: width / _containerSize,
+                width: width / _containerSize,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                // child: Image.asset('assets/images/file_name.png')
+                child: Image.asset(
+                  AssetsData.logo,
+                  width: 170,
+                  color: Colors.black,
+                ),
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
-  }
-
-  void initSlidingAnimation() {
-    animationController = AnimationController(
-      vsync: this,
-      duration: const Duration(seconds: 1),
-    );
-    slidingAnimation =
-        Tween<Offset>(begin: const Offset(0, 3), end: Offset.zero)
-            .animate(animationController);
-    animationController.forward();
   }
 }

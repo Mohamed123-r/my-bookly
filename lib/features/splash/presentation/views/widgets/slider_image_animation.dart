@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:my_bookly/core/utils/assets.dart';
 
-import '../../../../../../core/utils/assets.dart';
 
 class SliderImageAnimation extends StatelessWidget {
   const SliderImageAnimation({super.key, required this.slidingAnimation});
