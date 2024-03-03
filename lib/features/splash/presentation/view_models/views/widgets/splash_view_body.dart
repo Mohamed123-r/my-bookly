@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_bookly/core/utils/assets.dart';
+import 'slider_image_animation.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
@@ -39,20 +39,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
       mainAxisAlignment: MainAxisAlignment.end,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        AnimatedBuilder(
-          animation: animationController,
-          builder: (BuildContext context, Widget? child) {
-            return SlideTransition(
-              position: slidingAnimation,
-              child: Padding(
-                padding: const EdgeInsets.only(bottom: 340.0),
-                child: Image.asset(
-                  AssetsData.logo,
-                ),
-              ),
-            );
-          },
-        ),
+        SliderImageAnimation(slidingAnimation: slidingAnimation,),
         const Center(
           child: Padding(
             padding: EdgeInsets.only(bottom: 16.0),
