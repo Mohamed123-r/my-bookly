@@ -1,7 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:my_bookly/core/utils/assets.dart';
 import 'package:my_bookly/features/home/presentation/views/home_view.dart';
+import 'slider_text_animation.dart';
+import 'slider_image_animation.dart';
 import 'splash_page_transition.dart';
 
 class SplashViewBody extends StatefulWidget {
@@ -25,6 +26,36 @@ class _SplashViewBodyState extends State<SplashViewBody>
   void initState() {
     super.initState();
 
+    initSlidingAnimation();
+    navigateToHomeView();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Stack(
+        children: [
+          SliderTextAnimation(
+            fontSize: _fontSize,
+            textOpacity: _textOpacity,
+            animation1: animation1,
+          ),
+          SliderImageAnimation(
+            containerOpacity: _containerOpacity,
+            containerSize: _containerSize,
+          ),
+        ],
+      ),
+    );
+  }
+
+  void initSlidingAnimation() {
     _controller =
         AnimationController(vsync: this, duration: const Duration(seconds: 4));
 
@@ -50,73 +81,13 @@ class _SplashViewBodyState extends State<SplashViewBody>
         _containerOpacity = 1;
       });
     });
+  }
 
-    Timer(const Duration(seconds: 4), () {
+  void navigateToHomeView() {
+    Timer(const Duration(seconds: 3), () {
       setState(() {
         Navigator.pushReplacement(context, PageTransition(const HomePage()));
       });
     });
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
-    return Scaffold(
-      body: Stack(
-        children: [
-          Column(
-            children: [
-              AnimatedContainer(
-                  duration: const Duration(milliseconds: 2000),
-                  curve: Curves.fastLinearToSlowEaseIn,
-                  height: height / _fontSize),
-              AnimatedOpacity(
-                duration: const Duration(milliseconds: 1000),
-                opacity: _textOpacity,
-                child: Text(
-                  'Read free books',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: animation1.value,
-                  ),
-                ),
-              ),
-            ],
-          ),
-          Center(
-            child: AnimatedOpacity(
-              duration: const Duration(milliseconds: 2000),
-              curve: Curves.fastLinearToSlowEaseIn,
-              opacity: _containerOpacity,
-              child: AnimatedContainer(
-                duration: const Duration(milliseconds: 2000),
-                curve: Curves.fastLinearToSlowEaseIn,
-                height: width / _containerSize,
-                width: width / _containerSize,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                // child: Image.asset('assets/images/file_name.png')
-                child: Image.asset(
-                  AssetsData.logo,
-                  width: 170,
-                  color: Colors.black,
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
   }
 }
