@@ -1,6 +1,4 @@
-import 'package:easy_splash_screen/easy_splash_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:my_bookly/constants.dart';
 import 'package:my_bookly/core/utils/assets.dart';
 
 class SplashViewBody extends StatelessWidget {
@@ -8,24 +6,30 @@ class SplashViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return EasySplashScreen(
-      logoWidth: 200,
-      logo: Image.asset(
-        AssetsData.logo,
-      ),
-      title: const Text(
-        "Read free books",
-        style: TextStyle(
-          fontSize: 18,
-          fontWeight: FontWeight.bold,
+    return Column(
+
+      mainAxisAlignment: MainAxisAlignment.end,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(bottom: 340.0),
+          child: Image.asset(
+            AssetsData.logo,
+          ),
         ),
-      ),
-      backgroundColor: kPrimaryColor,
-      showLoader: true,
-      loaderColor: Colors.white,
-      loadingText: const Text("Loading..."),
-      navigator: Container(),
-      durationInSeconds: 15,
+        const Center(
+          child: Padding(
+            padding: EdgeInsets.only(bottom: 16.0),
+            child: Text(
+              "Read free books",
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
