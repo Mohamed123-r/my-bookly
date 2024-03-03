@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:my_bookly/constants.dart';
-
-
-import 'features/splash/presentation/view_models/views/splash_view.dart';
+import 'features/splash/presentation/views/splash_view.dart';
 
 void main() {
   runApp(const MyApp());
