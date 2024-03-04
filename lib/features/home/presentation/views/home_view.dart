@@ -1,20 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:my_bookly/core/utils/assets.dart';
+import 'package:my_bookly/features/home/presentation/views/widgets/home_view_body.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      //backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        title: Image.asset(
-          AssetsData.logo,
-          width: 100,
-        ),
-      ),
+    return const Scaffold(
+      body: HomeViewBody(),
     );
   }
 }
