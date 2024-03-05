@@ -25,3 +25,7 @@ flutter:
   assets:
     - assets/images/
 
+  fonts:
+    - family: Benne-Regular
+      fonts:
+        - asset: assets/fonts/Benne-Regular.ttf
