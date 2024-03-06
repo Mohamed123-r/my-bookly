@@ -45,9 +45,15 @@ class BestSellerListViewItem extends StatelessWidget {
                     style: Styles.textStyle24,
                   ),
                 ),
+                const SizedBox(
+                  height: 3,
+                ),
                 Text(
                   "J.K. Rowling",
                   style: Styles.textStyle16.copyWith(color: Colors.grey),
+                ),
+                const SizedBox(
+                  height: 3,
                 ),
                 const Row(
                   children: [

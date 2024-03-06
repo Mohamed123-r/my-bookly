@@ -20,6 +20,7 @@ abstract class Styles {
     fontSize: 24,
     fontWeight: FontWeight.normal,
     fontFamily: "Benne-Regular",
+    height: 1.1
   );
 
   static const textStyle32 = TextStyle(
