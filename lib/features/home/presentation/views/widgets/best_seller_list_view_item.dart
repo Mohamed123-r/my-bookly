@@ -30,6 +30,8 @@ class BestSellerListViewItem extends StatelessWidget {
             width: 24,
           ),
          Column(
+           crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(
                 width: MediaQuery.of(context).size.width *0.5,
@@ -39,6 +41,20 @@ class BestSellerListViewItem extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                   style: Styles.textStyle24,
                 ),
+              ),
+              Text(
+                "J.K. Rowling",
+                style: Styles.textStyle16.copyWith(
+                  color: Colors.grey
+                ),
+              ),
+              const Row(
+                children: [
+                  Text(
+                    "19.99 €",
+                    style: Styles.textStyle20
+                  ),
+                ],
               )
             ],
           ),
