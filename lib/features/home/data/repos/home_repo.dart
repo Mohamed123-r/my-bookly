@@ -4,5 +4,5 @@ import 'package:my_bookly/features/home/data/models/BookModel.dart';
 
 abstract class HomeRepo{
  Future<Either<Failure,List<BookModel>>> fetchFeaturedBooks();
- Future<Either<Failure,List<BookModel>>> fetchBastSellerBooks();
+ Future<Either<Failure,List<BookModel>>> fetchNewsBooks();
 }
