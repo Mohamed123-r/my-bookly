@@ -13,7 +13,6 @@ final String urlImage;
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
-            color: Colors.red,
             image:  DecorationImage(
               fit:BoxFit.fill,
               image: NetworkImage(

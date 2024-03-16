@@ -19,11 +19,12 @@ class BooksListView extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemCount: state.books.length,
               itemBuilder: (contest, index) {
-                return  Padding(
+                return Padding(
                   padding: const EdgeInsets.only(right: 12.0),
                   child: CustomBookItem(
                     urlImage:
-                        state.books[index].volumeInfo.imageLinks.thumbnail,                  ),
+                        state.books[index].volumeInfo.imageLinks.thumbnail,
+                  ),
                 );
               }),
         );
@@ -32,7 +33,9 @@ class BooksListView extends StatelessWidget {
           errorMessage: state.errorMessage,
         );
       }
-      return const CustomLoadingIndicator();
+      return SizedBox(
+          height: MediaQuery.sizeOf(context).height * 0.33,
+          child: const CustomLoadingIndicator());
     });
   }
 }
