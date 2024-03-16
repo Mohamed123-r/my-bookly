@@ -29,8 +29,11 @@ class BooksListView extends StatelessWidget {
               }),
         );
       } else if (state is FeaturedBooksFailure) {
-        return CustomErrorWidget(
-          errorMessage: state.errorMessage,
+        return SizedBox(
+          height: MediaQuery.sizeOf(context).height * 0.33,
+          child: CustomErrorWidget(
+            errorMessage: state.errorMessage,
+          ),
         );
       }
       return SizedBox(
