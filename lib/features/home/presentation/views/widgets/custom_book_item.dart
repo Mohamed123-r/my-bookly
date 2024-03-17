@@ -9,11 +9,11 @@ class CustomBookItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 22),
+      padding: const EdgeInsets.symmetric(vertical: 8),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(16),
         child: AspectRatio(
-          aspectRatio: 2.7 / 4,
+          aspectRatio: 2.6 / 4,
           child: CachedNetworkImage(
             fit: BoxFit.fill,
             imageUrl: urlImage,
