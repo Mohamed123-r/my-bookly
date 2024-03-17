@@ -11,16 +11,10 @@ final String urlImage;
       child: AspectRatio(
         aspectRatio: 2.7 / 4,
         child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
-            image:  DecorationImage(
-              fit:BoxFit.fill,
-              image: NetworkImage(
-                urlImage,
-              ),
-            ),
-          ),
-        ),
+
+        )
+
+
       ),
     );
   }
