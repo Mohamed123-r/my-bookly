@@ -41,7 +41,7 @@ class BestSellerListViewItem extends StatelessWidget {
                     height: 3,
                   ),
                   Text(
-                    book.volumeInfo.authors.toString(),
+                    book.volumeInfo.authors![0],
                     style: Styles.textStyle16.copyWith(color: Colors.grey),
                   ),
                   const SizedBox(
