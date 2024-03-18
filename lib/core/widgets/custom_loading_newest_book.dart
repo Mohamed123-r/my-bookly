@@ -31,6 +31,9 @@ class CustomLoadingNewestBook extends StatelessWidget {
                       ).redacted(
                         context: context,
                         redact: true,
+                        configuration: RedactedConfiguration(
+                          animationDuration: const Duration(milliseconds: 500),
+                        ),
                       ),
                     ),
                   ),
@@ -56,7 +59,7 @@ class CustomLoadingNewestBook extends StatelessWidget {
                         height: 3,
                       ),
                       Text(
-                        " book.volumeInfo.authors![0]",
+                        " book.volumeInfo",
                         style: Styles.textStyle16.copyWith(color: Colors.grey),
                       ),
                       const SizedBox(
@@ -67,7 +70,7 @@ class CustomLoadingNewestBook extends StatelessWidget {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Text(
-                            "Free",
+                            "Free  ",
                             style: Styles.textStyle20,
                           ),
                           BookRating(
@@ -82,9 +85,11 @@ class CustomLoadingNewestBook extends StatelessWidget {
               ],
             ),
           ).redacted(
-            context: context,
-            redact: true,
-          ),
+              context: context,
+              redact: true,
+              configuration: RedactedConfiguration(
+                animationDuration: const Duration(milliseconds: 500),
+              )),
         );
       },
     ));
