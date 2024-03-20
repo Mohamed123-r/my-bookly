@@ -1,13 +1,14 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:my_bookly/core/utils/service_locator.dart';
 import 'package:my_bookly/features/home/data/repos/home_repo_impl.dart';
 import 'package:my_bookly/features/home/presentation/manager/similar_book_cubit/similar_book_cubit.dart';
 import 'package:my_bookly/features/home/presentation/views/book_details_view.dart';
 import 'package:my_bookly/features/search/presentation/views/search_view.dart';
 import 'package:my_bookly/features/splash/presentation/views/splash_view.dart';
 import '../../features/home/presentation/views/home_view.dart';
+import 'api_service.dart';
 
 abstract class AppRouter {
   static const kHomeView = '/homeView';
@@ -31,8 +32,13 @@ abstract class AppRouter {
         path: kBookDetailsView,
         builder: (BuildContext context, GoRouterState state) {
           return BlocProvider(
-              create: (BuildContext context) =>
-                  SimilarBookCubit(getIt.get<HomeRepoImpl>()),
+              create: (BuildContext context) => SimilarBookCubit(
+                    HomeRepoImpl(
+                      ApiService(
+                        Dio(),
+                      ),
+                    ),
+                  ),
               child: const BookDetailsView());
         },
       ),

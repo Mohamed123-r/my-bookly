@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_bookly/core/widgets/custom_error_widget.dart';
+import '../../manager/similar_book_cubit/similar_book_cubit.dart';
 import 'custom_book_item.dart';
 
 class SimilarBooksListView extends StatelessWidget {
@@ -7,18 +9,37 @@ class SimilarBooksListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: MediaQuery.sizeOf(context).height * 0.18,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: 10,
-        itemBuilder: (contest, index) {
-          return const Padding(
-            padding: EdgeInsets.only(right: 12.0),
-            child: CustomBookItem(urlImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBH7FYPG4BzU9tXf0X219vEtd_9pC_C3SBX5ZffwygbQ&s',),
+    return BlocBuilder<SimilarBookCubit, SimilarBooksState>(
+      builder: (context, state) {
+        if (state is SimilarBooksSuccess) {
+          return SizedBox(
+            height: MediaQuery.sizeOf(context).height * 0.18,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: state.book.length,
+              itemBuilder: (contest, index) {
+                return const Padding(
+                  padding: EdgeInsets.only(right: 12.0),
+                  child: CustomBookItem(
+                    urlImage:
+                        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBH7FYPG4BzU9tXf0X219vEtd_9pC_C3SBX5ZffwygbQ&s',
+                  ),
+                );
+              },
+            ),
           );
-        },
-      ),
+        } else if (state is SimilarBooksFailure) {
+          return CustomErrorWidget(errorMessage: state.errMessage);
+        } else {
+          return SizedBox(
+            width: double.infinity,
+            height: MediaQuery.sizeOf(context).height * 0.18,
+            child: const Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
+        }
+      },
     );
   }
 }
