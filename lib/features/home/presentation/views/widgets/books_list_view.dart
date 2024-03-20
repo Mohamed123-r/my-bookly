@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:my_bookly/core/widgets/custom_loading_fealear_book.dart';
 import 'package:my_bookly/core/widgets/custom_error_widget.dart';
 import 'package:my_bookly/features/home/presentation/manager/features_book_cubit/featured_books_cubit.dart';
+import '../../../../../core/utils/app_router.dart';
 import 'custom_book_item.dart';
 
 class BooksListView extends StatelessWidget {
@@ -21,9 +23,18 @@ class BooksListView extends StatelessWidget {
               itemBuilder: (contest, index) {
                 return Padding(
                   padding: const EdgeInsets.only(right: 12.0),
-                  child: CustomBookItem(
-                    urlImage:
-                        state.books[index].volumeInfo.imageLinks?.thumbnail ?? '',
+                  child: GestureDetector(
+                    onTap: () {
+                      GoRouter.of(context).push(
+                        AppRouter.kBookDetailsView,
+                        extra: state.books[index] ,
+                      );
+                    },
+                    child: CustomBookItem(
+                      urlImage:
+                          state.books[index].volumeInfo.imageLinks?.thumbnail ??
+                              '',
+                    ),
                   ),
                 );
               }),
@@ -38,7 +49,7 @@ class BooksListView extends StatelessWidget {
       }
       return SizedBox(
           height: MediaQuery.sizeOf(context).height * 0.33,
-          child:  const CustomLoadingBookItem());
+          child: const CustomLoadingBookItem());
     });
   }
 }
