@@ -24,6 +24,7 @@ class BookDetailsSection extends StatelessWidget {
         ),
         Text(
           book.volumeInfo.title!,
+          textAlign: TextAlign.center,
           style: Styles.textStyle32,
         ),
         Text(
