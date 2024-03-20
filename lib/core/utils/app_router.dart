@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:my_bookly/features/home/data/models/BookModel.dart';
 import 'package:my_bookly/features/home/data/repos/home_repo_impl.dart';
 import 'package:my_bookly/features/home/presentation/manager/similar_book_cubit/similar_book_cubit.dart';
 import 'package:my_bookly/features/home/presentation/views/book_details_view.dart';
@@ -32,14 +33,17 @@ abstract class AppRouter {
         path: kBookDetailsView,
         builder: (BuildContext context, GoRouterState state) {
           return BlocProvider(
-              create: (BuildContext context) => SimilarBookCubit(
-                    HomeRepoImpl(
-                      ApiService(
-                        Dio(),
-                      ),
-                    ),
-                  ),
-              child: const BookDetailsView());
+            create: (BuildContext context) => SimilarBookCubit(
+              HomeRepoImpl(
+                ApiService(
+                  Dio(),
+                ),
+              ),
+            ),
+            child: BookDetailsView(
+              book: state.extra as BookModel,
+            ),
+          );
         },
       ),
       GoRoute(

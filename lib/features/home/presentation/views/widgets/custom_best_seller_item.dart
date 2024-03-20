@@ -17,16 +17,17 @@ class BestSellerListViewItem extends StatelessWidget {
     return Expanded(
       child: GestureDetector(
         onTap: () {
-           GoRouter.of(context).push(
+          GoRouter.of(context).push(
             AppRouter.kBookDetailsView,
-           );
+            extra: book,
+          );
         },
         child: SizedBox(
           height: 135,
           child: Row(
             children: [
               CustomBookItem(
-                urlImage: book.volumeInfo.imageLinks?.thumbnail?? "",
+                urlImage: book.volumeInfo.imageLinks?.thumbnail ?? "",
               ),
               const SizedBox(
                 width: 24,
