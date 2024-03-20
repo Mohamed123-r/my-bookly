@@ -7,7 +7,9 @@ import 'widgets/book_details_view_body.dart';
 
 class BookDetailsView extends StatefulWidget {
   const BookDetailsView({super.key, required this.book});
-final BookModel book ;
+
+  final BookModel book;
+
   @override
   State<BookDetailsView> createState() => _BookDetailsViewState();
 }
@@ -22,6 +24,8 @@ class _BookDetailsViewState extends State<BookDetailsView> {
 
   @override
   Widget build(BuildContext context) {
-    return const BookDetailsViewBody();
+    return BookDetailsViewBody(
+      bookModel: widget.book,
+    );
   }
 }
