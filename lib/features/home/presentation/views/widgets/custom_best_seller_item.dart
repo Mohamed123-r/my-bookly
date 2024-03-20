@@ -27,7 +27,7 @@ class BestSellerListViewItem extends StatelessWidget {
           child: Row(
             children: [
               CustomBookItem(
-                urlImage: book.volumeInfo.imageLinks?.thumbnail ?? "",
+                urlImage: book.volumeInfo?.imageLinks?.thumbnail ?? "",
               ),
               const SizedBox(
                 width: 24,
@@ -40,7 +40,7 @@ class BestSellerListViewItem extends StatelessWidget {
                     SizedBox(
                       width: MediaQuery.of(context).size.width * .6,
                       child: Text(
-                        book.volumeInfo.title!,
+                        book.volumeInfo?.title! ?? "",
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: Styles.textStyle24,
@@ -50,7 +50,7 @@ class BestSellerListViewItem extends StatelessWidget {
                       height: 3,
                     ),
                     Text(
-                      book.volumeInfo.authors![0],
+                      book.volumeInfo?.authors![0] ?? "",
                       style: Styles.textStyle16.copyWith(color: Colors.grey),
                     ),
                     const SizedBox(
@@ -65,8 +65,8 @@ class BestSellerListViewItem extends StatelessWidget {
                           style: Styles.textStyle20,
                         ),
                         BookRating(
-                          rating: book.volumeInfo.averageRating ?? 0,
-                          ratingCount: book.volumeInfo.ratingsCount ?? 0,
+                          rating: book.volumeInfo?.averageRating ?? 0,
+                          ratingCount: book.volumeInfo?.ratingsCount ?? 0,
                         ),
                       ],
                     )

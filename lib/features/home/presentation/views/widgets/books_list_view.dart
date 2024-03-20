@@ -32,7 +32,7 @@ class BooksListView extends StatelessWidget {
                     },
                     child: CustomBookItem(
                       urlImage:
-                          state.books[index].volumeInfo.imageLinks?.thumbnail ??
+                          state.books[index].volumeInfo?.imageLinks?.thumbnail ??
                               '',
                     ),
                   ),

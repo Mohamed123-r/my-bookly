@@ -16,19 +16,19 @@ class BookDetailsSection extends StatelessWidget {
         SizedBox(
           height: MediaQuery.of(context).size.height * 0.38,
           child: CustomBookItem(
-            urlImage: book.volumeInfo.imageLinks?.thumbnail ?? " ",
+            urlImage: book.volumeInfo?.imageLinks?.thumbnail ?? " ",
           ),
         ),
         const SizedBox(
           height: 20,
         ),
         Text(
-          book.volumeInfo.title!,
+          book.volumeInfo?.title ?? " ",
           textAlign: TextAlign.center,
           style: Styles.textStyle32,
         ),
         Text(
-          book.volumeInfo.authors![0],
+          book.volumeInfo?.authors![0] ?? " ",
           style: Styles.textStyle20.copyWith(
             color: Colors.grey,
             fontStyle: FontStyle.italic,
@@ -39,8 +39,8 @@ class BookDetailsSection extends StatelessWidget {
         ),
         BookRating(
           mainAxisAlignment: MainAxisAlignment.center,
-          rating: book.volumeInfo.averageRating ?? 0,
-          ratingCount: book.volumeInfo.ratingsCount ?? 0,
+          rating: book.volumeInfo?.averageRating ?? 0,
+          ratingCount: book.volumeInfo?.ratingsCount ?? 0,
         ),
       ],
     );

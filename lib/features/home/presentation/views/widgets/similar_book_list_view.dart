@@ -31,7 +31,7 @@ class SimilarBooksListView extends StatelessWidget {
                     },
                     child: CustomBookItem(
                       urlImage:
-                          state.book[index].volumeInfo.imageLinks?.thumbnail ??
+                          state.book[index].volumeInfo?.imageLinks?.thumbnail ??
                               "",
                     ),
                   ),
