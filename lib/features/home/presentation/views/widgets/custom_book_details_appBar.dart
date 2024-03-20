@@ -9,7 +9,9 @@ class CustomBookDetailsAppBar extends StatelessWidget {
       backgroundColor: Colors.transparent,
       elevation: 0,
       leading: IconButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pop(context);
+        },
         icon: const Icon(
           Icons.close,
         ),
