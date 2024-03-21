@@ -5,6 +5,7 @@ import 'ImageLinks.dart';
 class VolumeInfo {
   VolumeInfo({
     this.title,
+    this.description,
     this.authors,
     this.publisher,
     this.readingModes,
@@ -25,6 +26,7 @@ class VolumeInfo {
 
   VolumeInfo.fromJson(dynamic json) {
     title = json['title'];
+    description = json['description'];
     authors = json['authors'] != null ? json['authors'].cast<String>() : [];
     publisher = json['publisher'];
     readingModes = json['readingModes'] != null
@@ -51,6 +53,7 @@ class VolumeInfo {
   }
 
   String? title;
+  String?description;
   List<String>? authors;
   String? publisher;
   ReadingModes? readingModes;
