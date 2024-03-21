@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:my_bookly/core/widgets/custom_error_widget.dart';
+import 'package:my_bookly/core/widgets/custom_loading_fealear_book.dart';
 import '../../../../../core/utils/app_router.dart';
 import '../../manager/similar_book_cubit/similar_book_cubit.dart';
 import 'custom_book_item.dart';
@@ -46,7 +47,7 @@ class SimilarBooksListView extends StatelessWidget {
             width: double.infinity,
             height: MediaQuery.sizeOf(context).height * 0.18,
             child: const Center(
-              child: CircularProgressIndicator(),
+              child:CustomLoadingBookItem(),
             ),
           );
         }
