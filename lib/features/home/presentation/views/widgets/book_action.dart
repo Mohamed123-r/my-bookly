@@ -19,14 +19,14 @@ final BookModel bookModel;
             topLeft: Radius.circular(15),
             bottomLeft: Radius.circular(15),
           ), onPressed: () async {
-          final Uri url = Uri.parse(bookModel.volumeInfo!.infoLink!);
+          final Uri url = Uri.parse(bookModel.volumeInfo!.canonicalVolumeLink!);
           if (await  canLaunchUrl(url)) {
            await launchUrl(url);
           }
         },
         ),
         CustomButton(
-          title: 'Free preview',
+          title: 'Preview',
           color: 0xffEF8262,
           borderRadius: const BorderRadius.only(
             topRight: Radius.circular(15),
